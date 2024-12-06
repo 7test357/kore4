@@ -10,9 +10,12 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         header {
-            background: #343a40; /* 변경된 색상 */
+            background: #343a40;
             color: white;
             padding: 20px;
             text-align: center;
@@ -33,15 +36,16 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
         }
         footer {
             text-align: center;
             padding: 15px;
-            background: #343a40; /* 변경된 색상 */
+            background: #343a40;
             color: white;
-            position: relative;
-            bottom: 0;
             width: 100%;
+            position: relative;
+            margin-top: auto;
         }
         h2 {
             color: #4CAF50;
