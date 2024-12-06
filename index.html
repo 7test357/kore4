@@ -18,35 +18,39 @@
             text-align: center;
         }
         nav {
-            margin: 15px 0;
+            margin: 10px 0;
         }
         nav a {
-            margin: 0 15px;
+            margin: 0 10px;
             text-decoration: none;
             color: white;
             font-weight: bold;
         }
         .hero {
             background: url('image/logo.jpg') no-repeat center center/cover;
-            height: 400px;
+            height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            font-size: 2.5em;
+            font-size: 2em;
+            text-align: center;
+            padding: 0 10px;
+            box-sizing: border-box;
         }
         .content {
-            padding: 20px;
-            max-width: 800px;
-            margin: 20px auto;
+            padding: 15px;
+            max-width: 100%;
+            margin: 15px auto;
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
         }
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             background: #343a40;
             color: white;
             position: relative;
@@ -55,15 +59,12 @@
         }
         @media (max-width: 600px) {
             .hero {
-                font-size: 1.5em;
-                height: 250px;
+                font-size: 1.2em;
+                height: 200px;
             }
             nav a {
                 display: block;
-                margin: 10px 0;
-            }
-            .content {
-                padding: 15px;
+                margin: 5px 0;
             }
         }
     </style>
