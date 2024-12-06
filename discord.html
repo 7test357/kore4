@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디스코드 친구 추가</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #7289DA;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        a {
+            color: #43B581;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .button {
+            background: #43B581;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background: #35A74A;
+        }
+    </style>
+</head>
+<body>
+    <h1>디스코드 친구 추가</h1>
+    <div class="container">
+        <p>아래 버튼을 클릭하여 저를 친구 추가하세요!</p>
+        <p><strong>디스코드 사용자명:</strong>7357_test_7357</p>
+        <p>
+            <a href="https://discordapp.com/users/7357_test_7357" target="_blank">프로필 보기</a>
+        </p>
+        <button class="button" onclick="copyDiscordID()">친구 추가</button>
+    </div>
+
+    <script>
+        function copyDiscordID() {
+            const discordID = "7357_test_7357";
+            navigator.clipboard.writeText(discordID).then(() => {
+                alert("디스코드 사용자명을 클립보드에 복사했습니다: " + discordID);
+            }, () => {
+                alert("복사에 실패했습니다.");
+            });
+        }
+    </script>
+</body>
+</html>
