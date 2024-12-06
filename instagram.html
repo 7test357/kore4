@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인스타그램 친구 추가</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #E1306C;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        a {
+            color: #F4F4F4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .button {
+            background: #F4F4F4;
+            color: #E1306C;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background: #D3D3D3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>인스타그램 친구 추가</h1>
+        <p>아래 버튼을 클릭하여 저를 친구 추가하세요!</p>
+        <p><strong>인스타그램 사용자명:</strong> 7357test7357</p>
+        <p>
+            <a href="https://www.instagram.com/7357test7357" target="_blank">프로필 보기</a>
+        </p>
+        <button class="button" onclick="copyInstagramID()">친구 추가</button>
+    </div>
+
+    <script>
+        function copyInstagramID() {
+            const instagramID = "7357test7357";
+            navigator.clipboard.writeText(instagramID).then(() => {
+                alert("인스타그램 사용자명을 클립보드에 복사했습니다: " + instagramID);
+            }, () => {
+                alert("복사에 실패했습니다.");
+            });
+        }
+    </script>
+</body>
+</html>
