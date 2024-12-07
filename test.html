@@ -1,1 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube 비디오 플레이어</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: center;
+        }
+        header {
+            background: #343a40;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        .banner {
+            width: 150px;
+            height: 100%;
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+        }
+        .video-container {
+            position: relative;
+            max-width: 800px;
+            background: black;
+        }
+        iframe {
+            width: 100%;
+            height: 450px;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .controls button {
+            margin: 0 10px;
+            padding: 10px;
+            background: #343a40;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background: #4CAF50;
+        }
+        .volume-slider {
+            margin-left: 10px;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>YouTube 비디오 플레이어</h1>
+    </header>
+    <div class="banner">왼쪽 배너</div>
+    <div class="video-container">
+        <iframe id="video" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="banner">오른쪽 배너</div>
+    <div class="controls">
+        <button id="play-pause">재생</button>
+        <button id="fullscreen">전체화면</button>
+        <label for="volume">음량:</label>
+        <input type="range" id="volume" class="volume-slider" min="0" max="100" value="100">
+        <button id="toggle-theme">다크모드</button>
+    </div>
 
+    <script>
+        const video = document.getElementById('video');
+        const playPauseButton = document.getElementById('play-pause');
+        const fullscreenButton = document.getElementById('fullscreen');
+        const volumeSlider = document.getElementById('volume');
+        const toggleThemeButton = document.getElementById('toggle-theme');
+        let isPlaying = false;
+        let isDarkMode = false;
+
+        playPauseButton.addEventListener('click', () => {
+            if (isPlaying) {
+                video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                playPauseButton.textContent = '재생';
+            } else {
+                video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                playPauseButton.textContent = '정지';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        fullscreenButton.addEventListener('click', () => {
+            const player = video;
+            if (player.requestFullscreen) {
+                player.requestFullscreen();
+            } else if (player.mozRequestFullScreen) {
+                player.mozRequestFullScreen();
+            } else if (player.webkitRequestFullscreen) {
+                player.webkitRequestFullscreen();
+            } else if (player.msRequestFullscreen) {
+                player.msRequestFullscreen();
+            }
+        });
+
+        volumeSlider.addEventListener('input', (event) => {
+            const volume = event.target.value / 100;
+            video.contentWindow.postMessage(`{"event":"command","func":"setVolume","args":[${volume * 100}]} `, '*');
+        });
+
+        toggleThemeButton.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            toggleThemeButton.textContent = isDarkMode ? '화이트모드' : '다크모드';
+        });
+    </script>
+</body>
+</html>
