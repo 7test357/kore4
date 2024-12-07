@@ -13,6 +13,8 @@
             transition: background-color 0.3s;
             display: flex;
             justify-content: center;
+            align-items: center;
+            height: 100vh; /* 화면 전체 높이 사용 */
         }
         header {
             background: #343a40;
@@ -20,10 +22,17 @@
             padding: 10px;
             text-align: center;
             width: 100%;
+            position: absolute;
+            top: 0;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            position: relative;
         }
         .banner {
             width: 150px;
-            height: 100%;
+            height: 450px; /* 비디오 높이에 맞춤 */
             background-color: #007bff;
             color: white;
             display: flex;
@@ -32,7 +41,6 @@
             margin: 0 10px;
         }
         .video-container {
-            position: relative;
             max-width: 800px;
             background: black;
         }
@@ -70,11 +78,13 @@
     <header>
         <h1>YouTube 비디오 플레이어</h1>
     </header>
-    <div class="banner">왼쪽 배너</div>
-    <div class="video-container">
-        <iframe id="video" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+    <div class="container">
+        <div class="banner">왼쪽 배너</div>
+        <div class="video-container">
+            <iframe id="video" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="banner">오른쪽 배너</div>
     </div>
-    <div class="banner">오른쪽 배너</div>
     <div class="controls">
         <button id="play-pause">재생</button>
         <button id="fullscreen">전체화면</button>
