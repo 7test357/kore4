@@ -118,6 +118,7 @@
         <button id="fullscreen">전체화면</button>
         <label for="volume">음량:</label>
         <input type="range" id="volume" class="volume-slider" min="0" max="100" value="100">
+        <span id="volume-label">음량: 100%</span>
         <button id="toggle-theme">다크모드</button>
     </div>
 
@@ -136,7 +137,7 @@
         videoIds.forEach(videoId => {
             const iframe = document.createElement('iframe');
             iframe.className = 'video';
-            iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
+            iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=0`;
             iframe.frameBorder = '0';
             iframe.allowFullscreen = true;
             videoContainer.appendChild(iframe);
@@ -148,6 +149,11 @@
             videos.forEach((video, index) => {
                 video.style.display = index === currentVideoIndex ? 'block' : 'none';
             });
+            setTimeout(() => {
+                if (isPlaying) {
+                    videos[currentVideoIndex].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                }
+            }, 100);
         }
 
         document.getElementById('play-pause').addEventListener('click', () => {
@@ -174,6 +180,7 @@
         document.getElementById('volume').addEventListener('input', (event) => {
             const volume = event.target.value / 100;
             videos[currentVideoIndex].contentWindow.postMessage(`{"event":"command","func":"setVolume","args":[${volume * 100}]} `, '*');
+            document.getElementById('volume-label').textContent = `음량: ${event.target.value}%`;
         });
 
         document.getElementById('toggle-theme').addEventListener('click', () => {
