@@ -3,235 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>비디오 플레이어</title>
+    <title>연락처 - 인피니티</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            transition: background-color 0.3s;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
         }
         header {
             background: #343a40;
             color: white;
-            padding: 10px;
+            padding: 20px;
             text-align: center;
-            width: 100%;
-            position: absolute;
-            top: 0;
         }
-        .container {
-            display: flex;
-            align-items: center;
-            margin-top: 60px;
-            width: 100%;
-            max-width: 1200px;
-        }
-        .banner {
-            width: 150px;
-            height: 450px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 10px;
-            overflow: hidden;
-        }
-        .banner img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-        }
-        .video-container {
-            flex-grow: 1;
-            background: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 600px;
-            max-width: 100%;
-            position: relative;
-        }
-        .video {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: none;
-        }
-        .video.active {
-            display: block;
-        }
-        .controls, .arrow-controls {
-            display: flex;
-            justify-content: center;
+        nav {
             margin: 10px 0;
-            position: relative;
-            z-index: 1;
         }
-        .controls button, .arrow-controls button {
+        nav a {
             margin: 0 10px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
         }
-        .controls button {
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
             background: #343a40;
             color: white;
+            width: 100%;
+            position: relative;
+            bottom: 0;
         }
-        .controls button:hover {
-            background: #4CAF50;
-        }
-        .arrow-controls button {
-            font-size: 24px;
-            background: transparent;
-            color: #343a40;
-        }
-        .arrow-controls button:hover {
+        h2 {
             color: #4CAF50;
         }
-        .volume-slider {
-            margin-left: 10px;
+        p {
+            line-height: 1.6;
         }
-        .dark-mode {
-            background-color: #333;
-            color: white;
+        .contact-info {
+            margin: 20px 0;
         }
-        .dark-mode .controls button, .dark-mode .arrow-controls button {
-            background: #555;
-            color: white;
+        .social-media {
+            margin-top: 20px;
         }
-        .dark-mode .controls button:hover, .dark-mode .arrow-controls button:hover {
-            background: #4CAF50;
+        .social-media a {
+            margin-right: 15px;
+            color: #4CAF50;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>비디오 플레이어</h1>
+        <h1>인피니티</h1>
+        <nav>
+            <a href="index.html">홈</a>
+            <a href="page/about.html">회사 소개</a>
+            <a href="page/services.html">서비스</a>
+            <a href="page/feedback.html">고객 후기</a>
+        </nav>
     </header>
-    <div class="container">
-        <div class="banner">
-            <a href="https://google.com" target="_blank">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDv1Fytagbi-0pcHRlHZyXLO9pOQogu1RfSw&s" alt="왼쪽 배너 이미지">
-            </a>
+    <div class="content">
+        <h2>연락처</h2>
+        <div class="contact-info">
+            <p>연락처 정보는 다음과 같습니다:</p>
+            <p><strong>이메일:</strong> <a href="mailto:7357test7357@soscandia.org">7357test7357@soscandia.org</a></p>
+            <p>이메일은 수신만 가능합니다</p>
+            <p><strong>전화번호:</strong> <a href="tel:#">준비중</a></p>
         </div>
-        <div class="video-container" id="video-container"></div>
-        <div class="banner">
-            <a href="https://youtube.com" target="_blank">
-                <img src="https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg" alt="오른쪽 배너 이미지">
-            </a>
-        </div>
-    </div>
-    <div class="controls">
-        <button id="play-pause">재생</button>
-        <button id="fullscreen">전체화면</button>
-        <label for="volume">음량:</label>
-        <input type="range" id="volume" class="volume-slider" min="0" max="100" value="100">
-        <span id="volume-label">음량: 100%</span>
-        <button id="toggle-theme">다크모드</button>
-    </div>
-    <div class="arrow-controls">
-        <button id="prev-video">◀ 이전 영상</button>
-        <button id="next-video">다음 영상 ▶</button>
-    </div>
-
-    <script>
-        const videoIds = [
-            'dQw4w9WgXcQ', 
-            'bB7QIixWx7U',
-            'JS0fTRpcUoQ'
-        ];
         
-        const videoContainer = document.getElementById('video-container');
-        let currentVideoIndex = 0;
-        let isPlaying = false;
-        let isDarkMode = false;
-
-        videoIds.forEach(videoId => {
-            const iframe = document.createElement('iframe');
-            iframe.className = 'video';
-            iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=0`;
-            iframe.frameBorder = '0';
-            iframe.allowFullscreen = true;
-            videoContainer.appendChild(iframe);
-        });
-
-        const videos = document.querySelectorAll('.video');
-
-        function updateVideoDisplay() {
-            videos.forEach((video, index) => {
-                video.style.display = index === currentVideoIndex ? 'block' : 'none';
-            });
-            setTimeout(() => {
-                if (isPlaying) {
-                    videos[currentVideoIndex].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-                }
-            }, 100);
-        }
-
-        document.getElementById('play-pause').addEventListener('click', () => {
-            const currentVideo = videos[currentVideoIndex];
-            if (isPlaying) {
-                currentVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-                document.getElementById('play-pause').textContent = '재생';
-            } else {
-                currentVideo.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-                document.getElementById('play-pause').textContent = '정지';
-            }
-            isPlaying = !isPlaying;
-        });
-
-        document.getElementById('next-video').addEventListener('click', () => {
-            const currentVideo = videos[currentVideoIndex];
-            currentVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-            updateVideoDisplay();
-            document.getElementById('play-pause').textContent = '재생';
-            isPlaying = false;
-        });
-
-        document.getElementById('prev-video').addEventListener('click', () => {
-            const currentVideo = videos[currentVideoIndex];
-            currentVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-            currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-            updateVideoDisplay();
-            document.getElementById('play-pause').textContent = '재생';
-            isPlaying = false;
-        });
-
-        document.getElementById('volume').addEventListener('input', (event) => {
-            const volume = event.target.value / 100;
-            videos[currentVideoIndex].contentWindow.postMessage(`{"event":"command","func":"setVolume","args":[${volume * 100}]} `, '*');
-            document.getElementById('volume-label').textContent = `음량: ${event.target.value}%`;
-        });
-
-        document.getElementById('toggle-theme').addEventListener('click', () => {
-            isDarkMode = !isDarkMode;
-            document.body.classList.toggle('dark-mode', isDarkMode);
-            document.getElementById('toggle-theme').textContent = isDarkMode ? '화이트모드' : '다크모드';
-            updateButtonStyles();
-        });
-
-        function updateButtonStyles() {
-            const arrowButtons = document.querySelectorAll('.arrow-controls button');
-            arrowButtons.forEach(button => {
-                if (isDarkMode) {
-                    button.style.color = 'white';
-                } else {
-                    button.style.color = '#343a40';
-                }
-            });
-        }
-
-        updateVideoDisplay();
-    </script>
+        <h3>더 연락할 방법</h3>
+        <p>아래의 소셜 미디어 플랫폼을 통해 저희와 연결해 주세요:</p>
+        <div class="social-media">
+            <a href="discord.html" target="_blank">디스코드</a>
+            <a href="instagram.html" target="_blank">인스타그램</a>
+            <a href="#" target="_blank">회사 디스코드 서버(준비중)</a>
+        </div>
+        
+        <h3>위치</h3>
+        <p>저희 사무실은 다음 주소에 위치해 있습니다:</p>
+        <p><strong>주소:</strong> 준비중 </p>
+    </div>
+    <footer>
+        <p>© 2024 인피니티. All rights reserved.</p>
+    </footer>
 </body>
 </html>
