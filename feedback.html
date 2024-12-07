@@ -3,38 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>고객 후기 | 기업 이름</title>
+    <title>고객 후기 | 인피니티</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         header {
-            background-color: #343a40;
+            background: #343a40;
             color: white;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
         }
         nav {
-            display: flex;
-            justify-content: center;
-            background-color: #007bff;
-            padding: 10px;
+            margin: 10px 0;
         }
         nav a {
-            color: white;
-            padding: 10px 20px;
+            margin: 0 15px;
             text-decoration: none;
+            color: white;
+            font-weight: bold;
         }
         nav a:hover {
-            background-color: #0056b3;
+            text-decoration: underline;
         }
         .container {
             padding: 20px;
             max-width: 800px;
             margin: auto;
+            flex: 1;
         }
         .testimonial {
             background: white;
@@ -52,12 +54,12 @@
         }
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #343a40;
+            padding: 15px;
+            background: #343a40;
             color: white;
-            position: relative;
-            bottom: 0;
             width: 100%;
+            position: relative;
+            margin-top: auto;
         }
     </style>
 </head>
@@ -70,6 +72,7 @@
         <a href="index.html">홈</a>
         <a href="about.html">회사 소개</a>
         <a href="services.html">서비스</a>
+        <a href="feedback.html">고객 후기</a>
         <a href="contact.html">연락처</a>
     </nav>
     <div class="container">
@@ -91,7 +94,7 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 기업 이름. 모든 권리 보유.</p>
+        <p>&copy; 2024 인피니티. 모든 권리 보유.</p>
     </footer>
 </body>
 </html>
