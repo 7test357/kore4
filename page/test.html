@@ -73,9 +73,11 @@
             margin: 10px 0;
             position: relative;
             z-index: 1;
+            flex-direction: column; /* 세로 방향으로 배치 */
+            align-items: center; /* 가운데 정렬 */
         }
         .controls button {
-            margin: 0 10px;
+            margin: 5px 10px; /* 버튼 간격 조정 */
             padding: 10px;
             background: #343a40;
             color: white;
@@ -114,12 +116,15 @@
     </div>
     <div class="controls">
         <button id="play-pause">재생</button>
-        <button id="next-video">다음 영상</button>
         <button id="fullscreen">전체화면</button>
         <label for="volume">음량:</label>
         <input type="range" id="volume" class="volume-slider" min="0" max="100" value="100">
         <span id="volume-label">음량: 100%</span>
         <button id="toggle-theme">다크모드</button>
+    </div>
+    <div class="controls">
+        <button id="prev-video">이전 영상</button>
+        <button id="next-video">다음 영상</button>
     </div>
 
     <script>
@@ -172,6 +177,15 @@
             const currentVideo = videos[currentVideoIndex];
             currentVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
             currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+            updateVideoDisplay();
+            document.getElementById('play-pause').textContent = '재생';
+            isPlaying = false;
+        });
+
+        document.getElementById('prev-video').addEventListener('click', () => {
+            const currentVideo = videos[currentVideoIndex];
+            currentVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length; // 이전 비디오로 이동
             updateVideoDisplay();
             document.getElementById('play-pause').textContent = '재생';
             isPlaying = false;
