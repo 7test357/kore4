@@ -73,11 +73,9 @@
             margin: 10px 0;
             position: relative;
             z-index: 1;
-            flex-direction: column; /* 세로 방향으로 배치 */
-            align-items: center; /* 가운데 정렬 */
         }
         .controls button {
-            margin: 5px 10px; /* 버튼 간격 조정 */
+            margin: 0 10px;
             padding: 10px;
             background: #343a40;
             color: white;
@@ -87,6 +85,21 @@
         }
         .controls button:hover {
             background: #4CAF50;
+        }
+        .arrow-controls {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .arrow-controls button {
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #343a40;
+        }
+        .arrow-controls button:hover {
+            color: #4CAF50;
         }
         .volume-slider {
             margin-left: 10px;
@@ -122,9 +135,9 @@
         <span id="volume-label">음량: 100%</span>
         <button id="toggle-theme">다크모드</button>
     </div>
-    <div class="controls">
-        <button id="prev-video">이전 영상</button>
-        <button id="next-video">다음 영상</button>
+    <div class="arrow-controls">
+        <button id="prev-video">◀ 이전 영상</button>
+        <button id="next-video">다음 영상 ▶</button>
     </div>
 
     <script>
@@ -138,7 +151,6 @@
         let isPlaying = false;
         let isDarkMode = false;
 
-        // 비디오 iframe 생성
         videoIds.forEach(videoId => {
             const iframe = document.createElement('iframe');
             iframe.className = 'video';
@@ -185,7 +197,7 @@
         document.getElementById('prev-video').addEventListener('click', () => {
             const currentVideo = videos[currentVideoIndex];
             currentVideo.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-            currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length; // 이전 비디오로 이동
+            currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
             updateVideoDisplay();
             document.getElementById('play-pause').textContent = '재생';
             isPlaying = false;
@@ -203,7 +215,7 @@
             document.getElementById('toggle-theme').textContent = isDarkMode ? '화이트모드' : '다크모드';
         });
 
-        updateVideoDisplay(); // 초기 비디오 표시 업데이트
+        updateVideoDisplay();
     </script>
 </body>
 </html>
