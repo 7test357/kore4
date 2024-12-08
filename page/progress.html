@@ -8,16 +8,10 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            transition: background-color 0.3s, color 0.3s;
         }
         h1 {
             text-align: center;
-        }
-        .logo {
-            display: block;
-            margin: 0 auto;
-            width: 100px; /* 원하는 크기로 조정 */
-            height: 100px; /* 원하는 크기로 조정 */
-            border-radius: 50%; /* 프로필 사진처럼 둥글게 */
         }
         .progress-container {
             width: 100%;
@@ -35,13 +29,21 @@
         .website { background-color: #4CAF50; width: 80%; }
         .discord { background-color: #2196F3; width: 5%; }
         .etc { background-color: #f44336; width: 1%; }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+        .dark-mode .progress-container {
+            background-color: #333;
+        }
     </style>
 </head>
 <body>
 
     <h1>기업 설립 진행도</h1>
-    
-    <img src="../image/logo.png" alt="로고" class="logo">
+
+    <button id="modeToggle" style="position: absolute; top: 20px; right: 20px;">다크모드</button>
 
     <h2>웹사이트</h2>
     <div class="progress-container">
@@ -57,6 +59,14 @@
     <div class="progress-container">
         <div class="progress-bar etc">1%</div>
     </div>
+
+    <script>
+        const button = document.getElementById('modeToggle');
+        button.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            button.textContent = document.body.classList.contains('dark-mode') ? '화이트모드' : '다크모드';
+        });
+    </script>
 
 </body>
 </html>
