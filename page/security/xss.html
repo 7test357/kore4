@@ -5,21 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XSS 실험 페이지</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
-        h1 { color: #333; }
-        p { color: #555; }
-        input[type="text"] { padding: 10px; width: 100%; margin-top: 10px; }
-        button { padding: 10px 20px; background-color: #333; color: white; border: none; cursor: pointer; }
-        button:hover { background-color: #555; }
-        .output { margin-top: 20px; padding: 10px; background-color: #eee; border: 1px solid #ccc; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #2d3e50;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4caf50;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .output {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 1em;
+            color: #777;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #4caf50;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+
     <h1>XSS 실험 페이지</h1>
-    <p>다음 필드에 텍스트를 입력하면 XSS 공격을 실험할 수 있습니다.</p>
-    <input type="text" id="userInput" placeholder="여기에 텍스트를 입력하세요">
-    <button onclick="executeXSS()">입력</button>
-    <div class="output" id="output"></div>
+    <p>이 페이지는 XSS 공격을 실험하는 페이지입니다. 아래 입력 필드에 텍스트를 입력하면 결과가 아래에 출력됩니다.</p>
+    
+    <div class="container">
+        <input type="text" id="userInput" placeholder="여기에 텍스트를 입력하세요">
+        <button onclick="executeXSS()">입력</button>
+        <div class="output" id="output"></div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 <a href="#">Your Company</a>. All rights reserved.</p>
+    </div>
 
     <script>
         function executeXSS() {
@@ -27,5 +122,6 @@
             document.getElementById('output').innerHTML = "입력한 값: " + userInput;
         }
     </script>
+
 </body>
 </html>
