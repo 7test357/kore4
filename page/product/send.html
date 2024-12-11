@@ -92,21 +92,12 @@
 
     <h1>디스코드 메시지 전송</h1>
     <form id="webhookForm">
-        <label>전송 방법 선택:</label>
-        <label><input type="radio" name="sendMethod" value="messageOnly" checked> 메시지만 전송</label>
-        <label><input type="radio" name="sendMethod" value="fileOnly"> 파일만 전송</label>
-        <label><input type="radio" name="sendMethod" value="messageAndFile"> 메시지 + 파일 전송</label>
-        
-        <div id="messageSection">
-            <label for="message">메시지:</label>
-            <input type="text" id="message" name="message" placeholder="메시지를 입력하세요">
-        </div>
+        <label for="message">메시지:</label>
+        <input type="text" id="message" name="message" placeholder="메시지를 입력하세요">
 
-        <div id="fileSection">
-            <label for="file">파일 업로드:</label>
-            <input type="file" id="file" name="file">
-            <button type="button" class="cancel-button" id="cancelButton">취소</button>
-        </div>
+        <label for="file">파일 업로드:</label>
+        <input type="file" id="file" name="file">
+        <button type="button" class="cancel-button" id="cancelButton">취소</button>
         
         <button type="submit">전송</button>
         <div class="alert" id="alertMessage"></div>
@@ -120,16 +111,17 @@
             const webhookUrl = 'https://discord.com/api/webhooks/1316342438993854476/x3zdRNcyamIfcs1-A_-BuGynHDuO7TRFxXxZ3hd3DNLb5dUN0pPaREVxF9PdWobiBgcu';
             const formData = new FormData();
 
-            const sendMethod = document.querySelector('input[name="sendMethod"]:checked').value;
+            const hasMessage = message.trim() !== '';
+            const hasFile = fileInput.files.length > 0;
 
-            if (sendMethod === 'messageOnly' && message) {
+            if (hasMessage) {
                 formData.append('content', message);
-            } else if (sendMethod === 'fileOnly' && fileInput.files.length > 0) {
+            }
+            if (hasFile) {
                 formData.append('file', fileInput.files[0]);
-            } else if (sendMethod === 'messageAndFile') {
-                if (message) formData.append('content', message);
-                if (fileInput.files.length > 0) formData.append('file', fileInput.files[0]);
-            } else {
+            }
+
+            if (!hasMessage && !hasFile) {
                 document.getElementById('alertMessage').innerText = '메시지 또는 파일을 입력하세요.';
                 return;
             }
@@ -155,24 +147,6 @@
         document.getElementById('cancelButton').addEventListener('click', function() {
             document.getElementById('file').value = '';
         });
-
-        document.querySelectorAll('input[name="sendMethod"]').forEach(input => {
-            input.addEventListener('change', function() {
-                const selectedMethod = this.value;
-                if (selectedMethod === 'messageOnly') {
-                    document.getElementById('messageSection').style.display = 'block';
-                    document.getElementById('fileSection').style.display = 'none';
-                } else if (selectedMethod === 'fileOnly') {
-                    document.getElementById('messageSection').style.display = 'none';
-                    document.getElementById('fileSection').style.display = 'block';
-                } else {
-                    document.getElementById('messageSection').style.display = 'block';
-                    document.getElementById('fileSection').style.display = 'block';
-                }
-            });
-        });
-
-        document.getElementById('fileSection').style.display = 'block';
     </script>
 </body>
 </html>
