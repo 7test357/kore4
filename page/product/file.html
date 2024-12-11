@@ -63,7 +63,7 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" id="mainContent" style="display: none;">
         <h1>파일 암호화/복호화</h1>
         
         <h2>파일 암호화</h2>
@@ -81,6 +81,17 @@
     </div>
 
     <script>
+        const correctPassword = 'kore4';
+
+        // 페이지 로드 시 비밀번호 입력
+        const userPassword = prompt('비밀번호를 입력하세요:');
+
+        if (userPassword !== correctPassword) {
+            window.location.href = 'about:blank';
+        } else {
+            document.getElementById('mainContent').style.display = 'block'; // 페이지 내용 표시
+        }
+
         let encryptedFileContent = '';
         let originalFileName = '';
 
