@@ -61,14 +61,21 @@
             margin-top: 10px;
             color: red;
         }
+
+        .cancel-button {
+            background-color: #f44336;
+            margin-top: 10px;
+        }
+
+        .cancel-button:hover {
+            background-color: #d32f2f;
+        }
     </style>
 </head>
 <body>
     <script>
         const correctPassword = 'kore4';
-
         const userPassword = prompt('비밀번호를 입력하세요:');
-
         if (userPassword !== correctPassword) {
             window.location.href = 'about:blank';
         }
@@ -81,6 +88,7 @@
         
         <label for="file">파일 업로드:</label>
         <input type="file" id="file" name="file">
+        <button type="button" class="cancel-button" id="cancelButton">취소</button>
         
         <button type="submit">전송</button>
         <div class="alert" id="alertMessage"></div>
@@ -89,7 +97,6 @@
     <script>
         document.getElementById('webhookForm').addEventListener('submit', function(event) {
             event.preventDefault();
-
             const message = document.getElementById('message').value;
             const fileInput = document.getElementById('file');
             const webhookUrl = 'https://discord.com/api/webhooks/1316342438993854476/x3zdRNcyamIfcs1-A_-BuGynHDuO7TRFxXxZ3hd3DNLb5dUN0pPaREVxF9PdWobiBgcu';
@@ -117,6 +124,10 @@
                 console.error('Error:', error);
                 document.getElementById('alertMessage').innerText = '전송 중 오류가 발생했습니다.';
             });
+        });
+
+        document.getElementById('cancelButton').addEventListener('click', function() {
+            document.getElementById('file').value = '';
         });
     </script>
 </body>
