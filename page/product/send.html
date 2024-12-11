@@ -64,6 +64,16 @@
     </style>
 </head>
 <body>
+    <script>
+        const correctPassword = 'kore4';
+
+        const userPassword = prompt('비밀번호를 입력하세요:');
+
+        if (userPassword !== correctPassword) {
+            window.location.href = 'about:blank';
+        }
+    </script>
+
     <h1>디스코드 웹훅 메시지 전송</h1>
     <form id="webhookForm">
         <label for="message">메시지:</label>
