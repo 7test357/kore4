@@ -6,7 +6,7 @@
     <title>파일 이동 페이지</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             color: #333;
             display: flex;
@@ -14,39 +14,62 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            padding: 20px;
         }
-        h1 {
+
+        .container {
             text-align: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
             margin-bottom: 20px;
             color: #4CAF50;
+            font-size: 24px;
         }
+
         ul {
             list-style-type: none;
             padding: 0;
         }
+
         li {
             margin: 15px 0;
         }
+
         a {
             text-decoration: none;
             color: white;
             background-color: #4CAF50;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-block;
         }
+
         a:hover {
             background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        a:active {
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div>
+    <div class="container">
         <h1>파일 이동 페이지</h1>
         <ul>
             <li><a href="file.html">file.html</a></li>
             <li><a href="send.html">send.html</a></li>
             <li><a href="steganography.html">steganography.html</a></li>
+            <li><a href="txt.html">txt.html</a></li>
         </ul>
     </div>
 </body>
